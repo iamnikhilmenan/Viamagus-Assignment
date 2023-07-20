@@ -29,10 +29,16 @@ function Navigation() {
               tabBarIcon: ({focused}) => (
                 <>
                   <Image
-                    source={require('../assest/home.png')}
+                    source={require('../assets/home.png')}
                     tintColor={focused ? '#6231AD' : '#B5C0C8'}
                   />
-                  <Text>Home</Text>
+                  <Text
+                    style={{
+                      fontSize: 10,
+                      fontFamily: 'Montserrat-SemiBold',
+                    }}>
+                    Home
+                  </Text>
                 </>
               ),
             }}
@@ -44,10 +50,16 @@ function Navigation() {
               tabBarIcon: ({focused}) => (
                 <>
                   <Image
-                    source={require('../assest/leagues.png')}
+                    source={require('../assets/leagues.png')}
                     tintColor={focused ? '#6231AD' : '#B5C0C8'}
                   />
-                  <Text>Leagues</Text>
+                  <Text
+                    style={{
+                      fontSize: 10,
+                      fontFamily: 'Montserrat-SemiBold',
+                    }}>
+                    Leagues
+                  </Text>
                 </>
               ),
             }}
@@ -59,10 +71,16 @@ function Navigation() {
               tabBarIcon: ({focused}) => (
                 <>
                   <Image
-                    source={require('../assest/research.png')}
+                    source={require('../assets/research.png')}
                     tintColor={focused ? '#6231AD' : '#B5C0C8'}
                   />
-                  <Text>Reasearch</Text>
+                  <Text
+                    style={{
+                      fontSize: 10,
+                      fontFamily: 'Montserrat-SemiBold',
+                    }}>
+                    Reasearch
+                  </Text>
                 </>
               ),
             }}
@@ -74,10 +92,16 @@ function Navigation() {
               tabBarIcon: ({focused}) => (
                 <>
                   <Image
-                    source={require('../assest/leaderboard.png')}
+                    source={require('../assets/leaderboard.png')}
                     tintColor={focused ? '#6231AD' : '#B5C0C8'}
                   />
-                  <Text>LeaderBoard</Text>
+                  <Text
+                    style={{
+                      fontSize: 10,
+                      fontFamily: 'Montserrat-SemiBold',
+                    }}>
+                    LeaderBoard
+                  </Text>
                 </>
               ),
             }}
@@ -89,10 +113,16 @@ function Navigation() {
               tabBarIcon: ({focused}) => (
                 <>
                   <Image
-                    source={require('../assest/profile.png')}
+                    source={require('../assets/profile.png')}
                     tintColor={focused ? '#6231AD' : '#B5C0C8'}
                   />
-                  <Text>Profile</Text>
+                  <Text
+                    style={{
+                      fontSize: 10,
+                      fontFamily: 'Montserrat-SemiBold',
+                    }}>
+                    Profile
+                  </Text>
                 </>
               ),
             }}

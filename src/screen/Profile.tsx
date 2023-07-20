@@ -17,57 +17,57 @@ export default function Profile() {
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
     {
       title: 'First Stripe Earned',
       subTitle: 'Top 10% of highest spending players in a month',
-      icon: require('../assest/secondIcon.png'),
+      icon: require('../assets/secondIcon.png'),
     },
   ];
 
@@ -76,16 +76,16 @@ export default function Profile() {
       {/* section 1 */}
       <View>
         <View style={styles.navContainer}>
-          <Image source={require('../assest/logo.png')} />
+          <Image source={require('../assets/logo.png')} />
           <Text style={styles.textStyle}>Profile</Text>
-          <Image source={require('../assest/message-icon.png')} />
+          <Image source={require('../assets/message-icon.png')} />
         </View>
       </View>
 
       {/* section 2 */}
       <View style={styles.profileContainer}>
         <Image
-          source={require('../assest/profile-image.png')}
+          source={require('../assets/profile-image.png')}
           style={{
             paddingVertical: 12,
           }}
@@ -99,7 +99,7 @@ export default function Profile() {
         </Text>
         <View style={styles.logout}>
           <Image
-            source={require('../assest/logout.png')}
+            source={require('../assets/logout.png')}
             style={{marginRight: 12}}
           />
           <Text style={styles.textStyle}>Logout</Text>
@@ -107,22 +107,26 @@ export default function Profile() {
         <View style={styles.showPositionContainer}>
           <View style={styles.showPosition}>
             <View style={styles.showPositionBox}>
-              <Text style={[styles.textStyle, {fontWeight: '500'}]}>
+              <Text
+                style={[styles.textStyle, {fontFamily: 'Montserrat-SemiBold'}]}>
                 Under or Over
               </Text>
               <View style={styles.showPercentContainer}>
                 <Image
-                  source={require('../assest/upMark.png')}
+                  source={require('../assets/upMark.png')}
                   style={{marginRight: 12}}
                 />
                 <Text style={styles.percentText}>90%</Text>
               </View>
             </View>
             <View style={styles.showPositionBox}>
-              <Text style={[styles.textStyle, {fontWeight: '500'}]}>Top 5</Text>
+              <Text
+                style={[styles.textStyle, {fontFamily: 'Montserrat-SemiBold'}]}>
+                Top 5
+              </Text>
               <View style={styles.showPercentContainer}>
                 <Image
-                  source={require('../assest/downMark.png')}
+                  source={require('../assets/downMark.png')}
                   style={{marginRight: 12}}
                 />
                 <Text style={styles.percentText}>51%</Text>
@@ -130,7 +134,7 @@ export default function Profile() {
             </View>
           </View>
           <Image
-            source={require('../assest/star-icon.png')}
+            source={require('../assets/star-icon.png')}
             style={styles.starIcon}
           />
         </View>
@@ -150,10 +154,13 @@ export default function Profile() {
             style={{
               flex: 1,
               textAlign: 'center',
-              borderBottomColor: '#000',
+              borderBottomColor: '#6231AD',
               borderBottomWidth: isFocused ? 2 : 0,
-              color: isFocused ? '#000' : 'gray',
+              color: isFocused ? '#6231AD' : 'gray',
               paddingVertical: 14,
+              fontFamily: isFocused
+                ? 'Montserrat-SemiBold'
+                : 'Montserrat-Regular',
             }}
             onPress={() => setIsFocused(!isFocused)}>
             Games played
@@ -162,10 +169,13 @@ export default function Profile() {
             style={{
               flex: 1,
               textAlign: 'center',
-              borderBottomColor: '#000',
+              borderBottomColor: '#6231AD',
               borderBottomWidth: !isFocused ? 2 : 0,
-              color: !isFocused ? '#000' : 'gray',
+              color: !isFocused ? '#6231AD' : 'gray',
               paddingVertical: 14,
+              fontFamily: !isFocused
+                ? 'Montserrat-SemiBold'
+                : 'Montserrat-Regular!',
             }}
             onPress={() => setIsFocused(!isFocused)}>
             Badges
@@ -192,8 +202,18 @@ export default function Profile() {
                 key={index.toString()}>
                 <Image source={item.icon} style={{marginRight: 12}} />
                 <View style={{flex: 1}}>
-                  <Text>{item.title}</Text>
-                  <Text>{item.subTitle}</Text>
+                  <Text
+                    style={{
+                      fontFamily: 'Montserrat-SemiBold',
+                      fontSize: 14,
+                      marginBottom: 8,
+                    }}>
+                    {item.title}
+                  </Text>
+                  <Text
+                    style={{fontFamily: 'Montserrat-Regular', fontSize: 14}}>
+                    {item.subTitle}
+                  </Text>
                 </View>
               </View>
             </>
@@ -225,6 +245,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingVertical: 4,
     lineHeight: 22,
+    fontFamily: 'Montserrat-Regular',
   },
   logout: {
     flexDirection: 'row',
@@ -261,6 +282,6 @@ const styles = StyleSheet.create({
   },
   percentText: {
     fontSize: 24,
-    fontWeight: '800',
+    fontFamily: 'Montserrat-Bold',
   },
 });

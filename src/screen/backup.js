@@ -2,19 +2,15 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
   Image,
-  ImageBackground,
-  Button,
   Dimensions,
   TouchableOpacity,
-  Modal,
-  Pressable,
-  Alert,
   FlatList,
 } from 'react-native';
 import React, {useState} from 'react';
+import {Modal} from 'react-native-paper';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
+import ScrollPicker from 'react-native-wheel-scrollview-picker';
 
 const dummyEntryTickets = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
@@ -25,13 +21,18 @@ export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
   var today = new Date();
 
-  const onOverButtonHandler = () => {
-    console.log('on over button handler');
-    setModalVisible(true);
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+
+  const onEntryTicketPress = (item: any) => {
+    setVisible(false);
+    console.log(`Entry Ticket===>`, item);
   };
 
   return (
-    <ScrollView style={styles.mainContainer}>
+    <View style={styles.mainContainer}>
       <Text style={styles.navBarText}>Today's Games</Text>
       <View
         style={{
@@ -54,7 +55,7 @@ export default function Home() {
                 style={[styles.textStyle, {marginRight: 8, color: '#D2BAF5'}]}>
                 UNDER OR OVER
               </Text>
-              <Image source={require('../assest/infoIcon.png')} />
+              <Image source={require('../assets/infoIcon.png')} />
             </View>
             <View
               style={{
@@ -70,14 +71,22 @@ export default function Home() {
                 <Text
                   style={[
                     styles.textStyle,
-                    {marginRight: 8, color: '#D2BAF5'},
+                    {
+                      marginRight: 8,
+                      color: '#D2BAF5',
+                      fontFamily: 'Montserrat-Regular',
+                    },
                   ]}>
                   Starting in
                 </Text>
-                <Image source={require('../assest/clock.png')} />
+                <Image source={require('../assets/clock.png')} />
               </View>
 
-              <Text style={[styles.textStyle, {color: '#D2BAF5'}]}>
+              <Text
+                style={[
+                  styles.textStyle,
+                  {color: '#D2BAF5', fontFamily: 'Montserrat-Regular'},
+                ]}>
                 {today.getHours() +
                   ':' +
                   today.getMinutes() +
@@ -91,8 +100,12 @@ export default function Home() {
             <Text style={[styles.textStyle, {color: '#D2BAF5'}]}>
               Bitcoin price will be under
             </Text>
-            <Text style={[styles.textStyle]}>
-              <Text style={[styles.textStyle, {fontWeight: '600'}]}>
+            <Text
+              style={[
+                styles.textStyle,
+                {fontFamily: 'Montserrat-Regular', color: '#fff'},
+              ]}>
+              <Text style={[styles.textStyle, {fontFamily: 'Montserrat-Bold'}]}>
                 ${'24,524'}
               </Text>{' '}
               at {'7'} a ET on {'22nd Jan 21'}
@@ -104,15 +117,15 @@ export default function Home() {
         <View style={styles.secondContainer}>
           <View style={styles.prizeContainer}>
             <View>
-              <Text>PRIZE POOL</Text>
+              <Text style={{fontFamily: 'Montserrat-Regular'}}>PRIZE POOL</Text>
               <Text style={styles.prizeValueText}>$12,000</Text>
             </View>
             <View>
-              <Text>UNDER</Text>
+              <Text style={{fontFamily: 'Montserrat-Regular'}}>UNDER</Text>
               <Text style={styles.prizeValueText}>3.25x</Text>
             </View>
             <View>
-              <Text>OVER</Text>
+              <Text style={{fontFamily: 'Montserrat-Regular'}}>OVER</Text>
               <Text style={styles.prizeValueText}>1.25x</Text>
             </View>
             <View
@@ -137,7 +150,7 @@ export default function Home() {
                 {marginRight: 12, backgroundColor: '#452C55'},
               ]}>
               <Image
-                source={require('../assest/upArrow.png')}
+                source={require('../assets/upArrow.png')}
                 style={[styles.buttonIcon]}
               />
               <Text style={[styles.buttonText]}>Under</Text>
@@ -148,9 +161,9 @@ export default function Home() {
                 styles.button,
                 {marginLeft: 12, backgroundColor: '#6231AD'},
               ]}
-              onPress={onOverButtonHandler}>
+              onPress={showModal}>
               <Image
-                source={require('../assest/downArrow.png')}
+                source={require('../assets/downArrow.png')}
                 style={[styles.buttonIcon]}
               />
               <Text style={[styles.buttonText]}>Over</Text>
@@ -171,7 +184,7 @@ export default function Home() {
                 alignItems: 'center',
               }}>
               <Image
-                source={require('../assest/profile_2.png')}
+                source={require('../assets/profile_2.png')}
                 tintColor={'#727682'}
               />
               <Text style={[styles.secondaryTextStyle]}>355 Players</Text>
@@ -183,7 +196,7 @@ export default function Home() {
                 alignItems: 'center',
               }}>
               <Image
-                source={require('../assest/graphIcon.png')}
+                source={require('../assets/graphIcon.png')}
                 tintColor={'#727682'}
               />
               <Text style={[styles.secondaryTextStyle]}>View chart</Text>
@@ -214,24 +227,26 @@ export default function Home() {
             </Text>
           </View>
         </View>
-
-        {/* :: MODAL */}
-        <Modal
-          animationType="slide"
-          // transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
-          }}
+      </View>
+      {/* :: MODAL */}
+      <Modal
+        visible={visible}
+        onDismiss={hideModal}
+        contentContainerStyle={{
+          backgroundColor: 'white',
+          position: 'absolute',
+          width: '100%',
+          bottom: 0,
+          borderTopRightRadius: 12,
+          borderTopLeftRadius: 12,
+        }}>
+        <View
           style={{
-            backgroundColor: '#fff',
-            height: 100,
+            paddingHorizontal: 12,
           }}>
           <View
             style={{
-              backgroundColor: 'red',
-              paddingHorizontal: 12,
+              alignItems: 'center',
             }}>
             <View
               style={{
@@ -242,89 +257,147 @@ export default function Home() {
                 marginVertical: 12,
               }}
             />
+          </View>
+
+          <Text
+            style={{
+              color: '#000',
+              fontSize: 16,
+              marginVertical: 10,
+              fontFamily: 'Montserrat-SemiBold',
+            }}>
+            Your Prediction is Under
+          </Text>
+          <Text
+            style={{
+              color: '#000',
+              fontSize: 12,
+              textTransform: 'uppercase',
+              marginVertical: 12,
+              fontFamily: 'Montserrat-Regular',
+            }}>
+            Every Ticket
+          </Text>
+
+          <View
+            style={{
+              height: Dimensions.get('screen').width / 2,
+              backgroundColor: 'red',
+            }}>
+            {/* <FlatList
+              data={dummyEntryTickets}
+              renderItem={({item}) => {
+                return (
+                  <>
+                    <TouchableOpacity onPress={() => onEntryTicketPress(item)}>
+                      <Text
+                        style={{
+                          fontSize: 24,
+                          alignSelf: 'center',
+                          color: '#000',
+                          fontFamily: 'Montserrat-SemiBold',
+                        }}>
+                        {item}
+                      </Text>
+                    </TouchableOpacity>
+                  </>
+                );
+              }}
+            /> */}
+            <ScrollPicker
+              dataSource={dummyEntryTickets}
+              selectedIndex={1}
+              renderItem={(item, index) => {
+                <>
+                  <TouchableOpacity onPress={() => onEntryTicketPress(item)}>
+                    <Text
+                      style={{
+                        fontSize: 24,
+                        alignSelf: 'center',
+                        color: '#000',
+                        fontFamily: 'Montserrat-SemiBold',
+                      }}>
+                      {item}
+                    </Text>
+                  </TouchableOpacity>
+                </>;
+              }}
+              onValueChange={(data, selectedIndex) => {
+                <Text>{selectedIndex}</Text>;
+              }}
+              // wrapperHeight={180}
+              // wrapperWidth={150}
+              // wrapperColor="#FFFFFF"
+              // itemHeight={60}
+              // highlightColor="#d8d8d8"
+              // highlightBorderWidth={2}
+            />
+          </View>
+
+          <View>
             <Text
               style={{
-                color: '#000',
-                fontSize: 16,
-                marginVertical: 10,
+                fontSize: 14,
+                fontFamily: 'Montserrat-Regular',
               }}>
-              Your Prediction is Under
+              You can win
             </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 12,
-                textTransform: 'uppercase',
-                marginVertical: 12,
-              }}>
-              Every Ticket
-            </Text>
-
             <View
-              style={{
-                backgroundColor: 'green',
-                height: Dimensions.get('screen').width / 2,
-              }}>
-              <FlatList
-                data={dummyEntryTickets}
-                renderItem={({item, index}) => {
-                  return (
-                    <>
-                      <TouchableOpacity>
-                        <Text
-                          style={{
-                            backgroundColor: 'yellow',
-                            fontSize: 24,
-                            alignSelf: 'center',
-                          }}>
-                          {item}
-                        </Text>
-                      </TouchableOpacity>
-                    </>
-                  );
-                }}
-              />
-            </View>
-
-            <View
-              style={{
-                backgroundColor: 'pink',
-              }}>
-              <Text>You can win</Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text>${2000}</Text>
-                <View style={{flexDirection: 'row'}}>
-                  <Text>Total</Text>
-                  <Image
-                    source={require('../assest/totalIcon.png')}
-                    style={{marginHorizontal: 6}}
-                  />
-                  <Text>5</Text>
-                </View>
-              </View>
-            </View>
-
-            <TouchableOpacity
-              style={{
-                backgroundColor: '#6231AD',
-                borderRadius: 25,
-                alignItems: 'center',
-                paddingVertical: 8,
-                marginVertical: 24,
-              }}>
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Text
                 style={{
-                  color: '#fff',
-                  fontSize: 16,
+                  color: '#03A67F',
+                  fontWeight: '500',
+                  fontSize: 14,
+                  fontFamily: 'Montserrat-SemiBold',
                 }}>
-                Submit my prediction
+                ${2000}
               </Text>
-            </TouchableOpacity>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontFamily: 'Montserrat-Regular',
+                  }}>
+                  Total
+                </Text>
+                <Image
+                  source={require('../assets/totalIcon.png')}
+                  style={{marginHorizontal: 6}}
+                />
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontFamily: 'Montserrat-SemiBold',
+                    color: '#000',
+                  }}>
+                  5
+                </Text>
+              </View>
+            </View>
           </View>
-        </Modal>
-      </View>
-    </ScrollView>
+
+          <TouchableOpacity
+            onPress={hideModal}
+            style={{
+              backgroundColor: '#6231AD',
+              borderRadius: 25,
+              alignItems: 'center',
+              paddingVertical: 10,
+              marginVertical: 24,
+            }}>
+            <Text
+              style={{
+                color: '#fff',
+                fontSize: 16,
+                fontFamily: 'Montserrat-SemiBold',
+              }}>
+              Submit my prediction
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+    </View>
   );
 }
 
@@ -332,6 +405,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#fff',
     padding: 12,
+    flex: 1,
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -350,12 +424,13 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '400',
     color: '#fff',
+    fontFamily: 'Montserrat-SemiBold',
   },
   dotStyle: {
-    backgroundColor: 'red',
+    backgroundColor: '#FFD600',
     width: 14,
     height: 14,
     borderRadius: 50,
@@ -367,9 +442,9 @@ const styles = StyleSheet.create({
   },
   navBarText: {
     fontSize: 18,
-    fontWeight: '400',
     color: '#000',
     paddingBottom: 14,
+    fontFamily: 'Montserrat-SemiBold',
   },
   prizeContainer: {
     flexDirection: 'row',
@@ -379,6 +454,7 @@ const styles = StyleSheet.create({
   prizeValueText: {
     fontWeight: '400',
     color: '#000',
+    fontFamily: 'Montserrat-SemiBold',
   },
   progressBarContainer: {
     backgroundColor: '#2DABAD',
@@ -395,11 +471,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: '#727682',
+    fontFamily: 'Montserrat-SemiBold',
   },
   textStyle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '400',
     color: '#fff',
+    fontFamily: 'Montserrat-SemiBold',
   },
   thirdContainer: {
     backgroundColor: '#F6F3FA',
